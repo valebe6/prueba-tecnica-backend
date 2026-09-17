@@ -1,114 +1,216 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Backend - Portal de equipo
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Backend de la aplicación de tablero de notas desarrollado con NestJS, TypeScript, PostgreSQL y TypeORM.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Tecnologías
 
-## Description
+- Node.js 20+
+- NestJS
+- TypeScript
+- TypeORM
+- PostgreSQL
+- JWT
+- Passport
+- bcrypt
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+---
 
-## Project setup
+# Requisitos
 
-```bash
-$ npm install
+Para ejecución manual:
+
+- Node.js 20+
+- npm
+- PostgreSQL
+
+Para ejecución mediante Docker:
+
+- Docker
+- Docker Compose
+
+---
+
+# Configuración
+
+Crear un archivo `.env` dentro de `back/`:
+
+```env
+PORT=3000
+
+DB_HOST=localhost
+DB_PORT=5433
+DB_USERNAME=vale
+DB_PASSWORD=Pass123
+DB_NAME=pruebatecnica
+
+JWT_SECRET=prueba-tecnica-secret-key
+JWT_EXPIRES_IN=1d
 ```
 
-## Compile and run the project
+> Cuando el backend se ejecuta mediante Docker Compose, las variables de conexión a PostgreSQL se configuran desde `docker-compose.yml`.
+
+---
+
+# Instalación
+
+Desde esta carpeta:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm install
 ```
 
-## Run tests
+---
+
+# Ejecución en desarrollo
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm run start:dev
 ```
 
-## Deployment
+La API estará disponible en:
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+```text
+http://localhost:3000
+```
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+---
+
+# Compilación
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+npm run build
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+---
 
-## Observability
+# Ejecución en producción
 
-In production applications, observability is essential for understanding how your system behaves, detecting issues early, and maintaining reliable performance.
+```bash
+npm run start:prod
+```
 
-[NestJS Observe](https://observe.nestjs.com) automatically instruments your NestJS application, giving you deep visibility into your system with minimal setup:
+---
 
-- **Distributed tracing:** Follow requests across services and understand how they flow through your system.
-- **Waterfall analysis:** Visualize request execution and identify slow operations, bottlenecks, and unexpected delays.
-- **Performance analysis:** Analyze application performance in real time and quickly pinpoint areas that need optimization.
-- **Metrics:** Track key application and infrastructure metrics to understand system health and performance trends.
-- **Logging:** Centralize and correlate logs with traces and other telemetry to make debugging easier.
-- **Error tracking:** Detect errors quickly and investigate their root causes with the surrounding context.
-- **SLA monitoring:** Track service-level objectives and identify when your application is approaching or exceeding defined thresholds.
-- **Alarms and alerts:** Set up alerts for critical errors, performance degradation, SLA violations, and other anomalies so your team can react quickly.
+# Base de datos
 
-## Resources
+La aplicación utiliza PostgreSQL.
 
-Check out a few resources that may come in handy when working with NestJS:
+Base de datos:
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Auto-instrument your application with [NestJS Observer](https://observer.nestjs.com). Distributed tracing, metrics, and logging made easy. Error tracking and performance monitoring for your NestJS applications.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```text
+pruebatecnica
+```
 
-## Support
+Usuario:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```text
+vale
+```
 
-## Stay in touch
+Puerto local:
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```text
+5433
+```
 
-## License
+El proyecto utiliza TypeORM para la persistencia de usuarios y notas.
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+---
+
+# Usuarios de demostración
+
+Al iniciar el proyecto por primera vez se crean:
+
+### Administrador
+
+```text
+Email: admin@test.com
+Password: Admin123
+```
+
+### Usuario
+
+```text
+Email: user@test.com
+Password: User123
+```
+
+---
+
+# API principal
+
+## Autenticación
+
+```http
+POST /auth/login
+```
+
+Permite iniciar sesión y obtener un JWT.
+
+## Usuarios
+
+```http
+GET /users
+POST /users
+GET /users/:id
+PATCH /users/:id
+PATCH /users/:id/status
+```
+
+Estas operaciones requieren autenticación y permisos de administrador.
+
+## Notas
+
+```http
+GET /notes
+POST /notes
+PATCH /notes/:id
+DELETE /notes/:id
+```
+
+Las operaciones de notas requieren un usuario autenticado.
+
+## Dashboard
+
+```http
+GET /dashboard
+```
+
+Devuelve las métricas calculadas a partir de las notas.
+
+---
+
+# Autenticación
+
+Las rutas protegidas utilizan JWT.
+
+El token debe enviarse mediante:
+
+```http
+Authorization: Bearer <token>
+```
+
+Los usuarios inactivos no pueden acceder al área autenticada.
+
+---
+
+# Docker
+
+Desde la raíz del proyecto:
+
+```bash
+docker compose up --build
+```
+
+El backend se ejecuta dentro de un contenedor y se conecta al servicio PostgreSQL mediante:
+
+```text
+DB_HOST=postgres
+DB_PORT=5432
+```
+
+El puerto de la API expuesto en la máquina local es:
+
+```text
+3000
+```
