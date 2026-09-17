@@ -18,6 +18,13 @@ export class UsersService {
 
   async findAll(): Promise<User[]> {
     return this.userRepository.find({
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        role: true,
+        active: true,
+      },
       order: {
         name: 'ASC',
       },
@@ -78,19 +85,41 @@ export class UsersService {
   ): Promise<User> {
     const user = await this.findById(id);
 
+    if (data.email !== undefined && data.email !== user.email) {
+      const existingUser = await this.findByEmail(data.email);
+      if (existingUser && existingUser.id !== id) {
+        throw new ConflictException('Ya existe un usuario con ese correo');
+      }
+      user.email = data.email;
+    }
+
     if (data.name !== undefined) {
       user.name = data.name;
     }
 
-    if (data.email !== undefined) {
-      user.email = data.email;
-    }
-
     if (data.role !== undefined) {
+      if (
+        user.role === UserRole.ADMIN &&
+        data.role !== UserRole.ADMIN &&
+        user.active
+      ) {
+        const activeAdmins = await this.userRepository.count({
+          where: {
+            role: UserRole.ADMIN,
+            active: true,
+          },
+        });
+
+        if (activeAdmins <= 1) {
+          throw new ConflictException(
+            'Debe existir al menos un administrador activo',
+          );
+        }
+      }
       user.role = data.role;
     }
 
-    if (data.password) {
+    if (data.password && data.password.trim().length > 0) {
       user.password = await bcrypt.hash(data.password, 10);
     }
 
